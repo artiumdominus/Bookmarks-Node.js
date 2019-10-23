@@ -9,9 +9,9 @@ A simple bookmarking application to have your favorite links stored independent 
 ## Model:
 ```
 User:
-    username : string
-    email    : string
-    password : string
+    username    : string
+    email       : string
+    password    : string
 
 Folder:
     id          : long
@@ -21,7 +21,7 @@ Folder:
     user        : User
 
 Tag:
-    name : string
+    name        : string
 
 Bookmark:
     name        : string
@@ -34,14 +34,14 @@ Bookmark:
 
 ## Routes:
 
-| URL                | Purpose                                     |
-|--------------------|---------------------------------------------|
-| /                  | Redirect to /login/ or /bookmarks/          |
-| /login/            | The Login screen                            |
-| /bookmarks/        | The bookmarks panel open in the root folder |
-| /bookmarks/?id=<id>| The bookmarks panel open in specific folder |
-| /api-graphql/      | Endpoint of a GraphQL API                   |
-| /api-rest/         | The main endpoint of a RESTful API          |
+| URL                      | Purpose                                     |
+|--------------------------|---------------------------------------------|
+| /                        | Redirect to /login/ or /bookmarks/          |
+| /login/                  | The Login screen                            |
+| /bookmarks/              | The bookmarks panel open in the root folder |
+| /bookmarks/?id=&lt;id&gt;| The bookmarks panel open in specific folder |
+| /api-graphql/            | Endpoint of a GraphQL API                   |
+| /api-rest/               | The main endpoint of a RESTful API          |
 
 ## Commands
 
