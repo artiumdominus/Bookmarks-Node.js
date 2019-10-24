@@ -32,6 +32,36 @@ Bookmark:
     folder      : Folder
 ```
 
+## MongoDB Schema
+```ruby
+db.accounts:
+{
+    _id: ID
+    username: String,
+    password: String,
+    email: String,
+    tag_enum: [String],
+    folders: [
+        {
+            id: Int,
+            name: String,
+            bookmarks: [
+                {
+                    name: String,
+                    url: String,
+                    favicon: ???,
+                    description: String,
+                    tags: [Int],
+                },
+            ],
+            subfolders: [
+                ... same as in folders ...
+            ]
+        },
+    ]
+}
+```
+
 ## Routes:
 
 | URL                      | Purpose                                     |
