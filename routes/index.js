@@ -12,9 +12,6 @@ router.use(
   })
 );
 
-// router.use(bodyParser.urlencoded({extended : true}));
-// router.use(bodyParser.json());
-
 // Connection URL
 const url = 'mongodb://localhost:27017';
 
@@ -24,12 +21,11 @@ const dbName = 'bookmarks';
 // Database config
 const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true }
 
+// RESTful API
 var api_rest = require('./api_rest');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  console.log(req.session)
-  console.log(req.session.loggedin)
   if (req.session.loggedin) {
     res.redirect('/bookmarks/')
   } else {
@@ -46,11 +42,11 @@ router.get('/login/', function (req, res) {
   }
 });
 
+// TODO : implement safety
 router.post('/login/auth', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   if (username && password) {
-    // TODO
     MongoClient.connect(url, dbConfig, function (err, client) {
       if (err) throw err;
     
@@ -78,10 +74,14 @@ router.post('/login/auth', function (req, res) {
 })
 
 router.get('/bookmarks/', function (req, res) {
-  if (typeof req.query.id === "undefined") {
-    res.send('Bookmarks panel');
+  if (req.session.loggedin) {
+    if (typeof req.query.id === "undefined") {
+      res.send(req.session.username + ' bookmarks panel');
+    } else {
+      res.send(req.session.username + ' bookmarks panel at folder ' + req.query.id);
+    }
   } else {
-    res.send('Bookmarks panel at folder ' + req.query.id);
+    res.redirect('/login/');
   }
 });
 
